@@ -1,19 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Temperature
+      min="-10"
+      max="110"
+      cold="30"
+      hot="90"
+      :temperature="temperature"
+      @change="temperatureChange"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Temperature from './components/Temperature.vue';
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Temperature
+  },
+  data() {
+    return {
+      temperature: 70
+    };
+  },
+  methods: {
+    temperatureChange(t) {
+      this.temperature = t;
+    }
   }
-}
+};
 </script>
 
 <style>
@@ -24,5 +40,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 60px auto 0;
 }
 </style>
